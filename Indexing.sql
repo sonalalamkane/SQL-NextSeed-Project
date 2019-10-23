@@ -19,6 +19,7 @@ SHOW INDEX FROM s;
 create index myindex on sonal(nname desc);
 
 create table s(
+
 	id int(2)not null,
     constraint pk primary key NONCLUSTERED (id)
 );
