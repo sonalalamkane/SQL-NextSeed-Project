@@ -81,8 +81,15 @@ insert into history values(100,2016,3900,1300);
 select * from current_year_production;
 select * from history;
 
-select fname from current_year_production c inner join history h on c.fid=h.fid 
-where h.fyear=2017 and c.productivity > h.productivity;
+select fname from current_year_production c 
+inner join history h on c.fid=h.fid 
+where h.fyear=2017 
+and c.productivity > h.productivity;
 
-select fname from current_year_production c inner join history h on c.fid=h.fid 
-where (c.productivity/c.area) > (h.productivity/c.area) and h.fyear =2017;
+SELECT fname,productivity / area
+FROM current_year_production 
+WHERE productivity / area > 
+(
+ SELECT AVG(PH.productivity / CYP.area) FROM history PH 
+ JOIN current_year_production CYP ON  PH.fid = CYP.fid 
+) 
