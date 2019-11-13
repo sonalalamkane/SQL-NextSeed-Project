@@ -59,5 +59,17 @@ select substring(web_name,LOCATE('...[\.][a-zA-z0-9]+[\.]',web_name)) as wname f
 
 
 
+select * from sal;
+
+
+select * from sal
+where 200>any(select salary from sal);
+
+select * from sal
+where 200>all(select salary from sal);
+
+select * from sal
+where exists(select * from sal where eid=1);
+
 
 
